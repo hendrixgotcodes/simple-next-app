@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import ArticleList from '../components/ArticleList'
 import styles from '../styles/Layout.module.css'
 
 export default function Home({articles}:{articles: {[key:string]: any}[]}) {
@@ -13,11 +14,7 @@ export default function Home({articles}:{articles: {[key:string]: any}[]}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {
-        articles.map((article)=>(
-          <h3 key={article.id}>{article.title}</h3>
-        ))
-      }
+      <ArticleList articles={articles} />
       
     </div>
   )
