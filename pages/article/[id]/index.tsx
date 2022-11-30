@@ -2,6 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import {GetStaticPaths, GetStaticProps, GetStaticPropsContext} from "next"
+import { server } from '../../../config'
 
 export default function ArticleDetails({article}:{article: {[key:string]:any}}) {
 
@@ -33,7 +34,7 @@ export  const getStaticPaths:GetStaticPaths = async()=>{
 }
 
 export const getStaticProps:GetStaticProps = async (context:GetStaticPropsContext)=>{
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params!.id}`)
+    const res = await fetch(`${server}/api/articles/${context.params!.id}`)
     const article = await res.json()
     return {
         props:{
